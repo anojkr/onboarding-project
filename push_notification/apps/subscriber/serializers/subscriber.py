@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from subscriber.models.subscriber import Subscriber
+from ..models.subscriber import Subscriber
 
 
 class SubscriberSerializer(serializers.ModelSerializer):
