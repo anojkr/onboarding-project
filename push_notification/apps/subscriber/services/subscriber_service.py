@@ -30,7 +30,7 @@ class SubscriberService(object):
 
     @classmethod
     def unsubscribe(cls, subscriber_id):
-        """Delete subscriber by given subscriber_id"""
+        """unsubscribe subscriber by given subscriber_id"""
         try:
             subscriber = Subscriber.objects.get(id=subscriber_id)
             cls.__update_subscriber_record(subscriber=subscriber,

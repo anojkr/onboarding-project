@@ -23,7 +23,7 @@ class SubscriberView(APIView):
         subscriber = SubscriberService().create(serialized_data.validated_data)
         return Response(SubscriberSerializer(subscriber).data, status=status.HTTP_201_CREATED)
 
-    def delete(self, request):
+    def patch(self, request):
         try:
             subscriber_id = request.data.get('subscriber_id', None)
             logger.info("SubscriberView.delete: Request to delete subscriber_id={}".format(subscriber_id))

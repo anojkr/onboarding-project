@@ -3,7 +3,7 @@ from ..services.subscriber_service import SubscriberService
 from ..serializers.subscriber import SubscriberSerializer
 from ..exceptions import SubscriberNotFound
 
-logger = logging.get_logger(__name__)
+logger = logging.getLogger(__name__)
 
 
 class SubscriberAPIService(object):
