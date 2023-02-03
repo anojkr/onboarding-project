@@ -20,4 +20,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path("api/v1/", include("apps.subscriber.urls")),
     path("api/v1/", include("apps.notification.urls")),
+    path("api/v1/", include("apps.webpush.urls")),
 ]

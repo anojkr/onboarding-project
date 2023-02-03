@@ -50,7 +50,7 @@ class SubscriberAPIService(object):
     def get_subscriber_subscription_data(cls, subscriber_id):
         try:
             logger.info("SubscriberAPIService.get_subscriber_subscription_data: subscriber_id={}".format(subscriber_id))
-            return SubscriberService.get_subscriber_subscription_data(subscriber_id)
+            return SubscriberService().get_subscriber_subscription_data(subscriber_id)
         except SubscriberNotFound as e:
             logger.error("SubscriberView.unsubscribe_subscriber: subscriber_id={}, exception={}".format(subscriber_id, e))
             return None

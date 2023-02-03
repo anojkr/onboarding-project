@@ -33,12 +33,11 @@ ALLOWED_HOSTS = [
 
 #CORS SETTINGS
 CORS_ORIGIN_ALLOW_ALL = True
-CORS_ORIGIN_WHITELIST = (
-  'http://localhost:8000',
-)
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:9000",
+]
 
 # Application definition
-
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -50,6 +49,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'apps.subscriber',
     'apps.notification',
+    'apps.webpush',
     'corsheaders'
 ]
 
@@ -62,6 +62,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
 ]
 
 ROOT_URLCONF = 'push_notification.urls'
