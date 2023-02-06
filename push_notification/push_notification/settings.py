@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'django_extensions',
     'rest_framework',
     'apps.subscriber',
+    'apps.notification',
     'corsheaders'
 ]
 
