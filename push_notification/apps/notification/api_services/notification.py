@@ -13,7 +13,7 @@ class NotificationAPIService(object):
         logger.info("NotificationAPIService.create_notification: payload={}".format(data))
         serialized_data = NotificationSerializer(data=data)
         serialized_data.is_valid(raise_exception=True)
-        notification = NotificationService().create(data)
+        notification = NotificationService().create(serialized_data.validated_data)
         return NotificationSerializer(notification).data
 
     @classmethod

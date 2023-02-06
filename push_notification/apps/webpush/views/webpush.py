@@ -12,7 +12,7 @@ logger = logging.getLogger(__name__)
 class WebPushView(APIView):
 
     def post(self, request):
-        notification_id = self.request.query_params.get('notification_id')
+        notification_id = self.request.query_params.get('id')
         logger.info("Notification-id {}, attempting to send push notification to subscribers".format(id))
         try:
             WebPushService().send_notification_to_all_subscriber(notification_id=notification_id)

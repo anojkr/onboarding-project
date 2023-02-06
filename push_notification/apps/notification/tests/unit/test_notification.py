@@ -29,7 +29,7 @@ class TestNotificationAPI(APITestCase):
         self.assertEqual(notification.id, self.notification_id)
 
     def test_delete_notification_by_id(self):
-        response = self.client.delete(self.url, data={"notification_id": self.notification_id}, format='json')
+        response = self.client.delete(self.url+"?id={}".format(self.notification_id), data={}, format='json')
         self.assertEqual(response.data.get('success'), True)
 
 

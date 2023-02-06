@@ -110,7 +110,7 @@ DATABASES = {
         "HOST": os.environ.get("POSTGRES_HOST"),
         "PORT": 5432,
         'TEST': {
-            'MIRROR': 'default',
+            'NAME': 'auto_tests',
         },
     }
 }
