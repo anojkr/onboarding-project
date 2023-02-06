@@ -25,5 +25,5 @@ class TestSubscriberAPI(APITestCase):
         self.assertNotEqual(len(subscribers.data), 0)
 
     def test_unsubscribe_subscriber(self):
-        subscriber = self.client.delete(self.url, data={"subscriber_id": self.subscriber_id})
+        subscriber = self.client.patch(self.url, data={"subscriber_id": self.subscriber_id})
         self.assertEqual(subscriber.data.get('success'), True)
