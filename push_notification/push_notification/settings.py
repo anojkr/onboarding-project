@@ -10,17 +10,21 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
+import os
+import environ
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+env = environ.Env()
+environ.Env.read_env(os.path.join(BASE_DIR, ".env"))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-4nr*@b(94xg)5hce_8i#f!5#)4!3_dl#o@(qkbvyli_pt3+*(%'
+SECRET_KEY = os.environ.get("SECRET_KEY", "default")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -31,7 +35,7 @@ ALLOWED_HOSTS = [
     "127.0.0.1",
 ]
 
-#CORS SETTINGS
+# CORS SETTINGS
 CORS_ORIGIN_ALLOW_ALL = True
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:9000",
@@ -85,7 +89,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'push_notification.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 """
@@ -97,14 +100,14 @@ DATABASES = {
 }
 """
 
-#Note -> Will further move configuration to enironment-variable
+# Note -> Will further move configuration to enironment-variable
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": "pushowl",
-        "USER": "anoj",
-        "PASSWORD": "",
-        "HOST": "127.0.0.1",
+        "NAME": os.environ.get("POSTGRES_NAME"),
+        "USER": os.environ.get("POSTGRES_USER"),
+        "PASSWORD": os.environ.get("POSTGRES_PASSWORD"),
+        "HOST": os.environ.get("POSTGRES_HOST"),
         "PORT": 5432,
         'TEST': {
             'MIRROR': 'default',
@@ -130,7 +133,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
 
@@ -144,7 +146,6 @@ USE_L10N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
@@ -155,7 +156,10 @@ STATIC_URL = '/static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-
-#Celery Worker Settings
-CELERY_BROKER_URL = "amqp://guest:guest@localhost:5672/"
-
+# Celery Worker Settings
+CELERY_BROKER_URL = env("CELERY_BROKER_URL", default="amqp://guest:guest@localhost:5672/")
+VAPID = {
+    "PRIVATE_KEY": env("VAPID_PRIVATE_KEY"),
+    "EMAIL": env("VAPID_EMAIL_CLAIM"),
+}
+NOTIFICATION_EXPIRE_AFTER_MINS = env.int("NOTIFICATION_EXPIRE_AFTER_MINS")
