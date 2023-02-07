@@ -13,16 +13,10 @@ class WebPushRequestUtils(object):
 
     @classmethod
     def vapid_auth_token_claims(cls):
-        """The audience claim `aud` is not set here, because pywebpush library extracts that out on its own
-        using the push service endpoint's URL coming in the push subscription data."""
         return {"sub": f"mailto:{cls.vapid_claim_email}", "exp": cls._compute_vapid_auth_token_expiry()}
 
     @classmethod
     def _compute_vapid_auth_token_expiry(cls):
-        """Method to compute VAPID auth token expiry claim.
-
-        :return: expiry time in epoch seconds
-        """
 
         def get_epoch_seconds(date_time):
             return int(date_time.timestamp())

@@ -24,7 +24,7 @@ def task_send_notification(subscription_id, notification_data):
             .format(subscription_id, notification_data)
         )
     except WebPushException as e:
-        logger.info(
+        logger.error(
             msg="Failed to send push notification, exception={} for subscriber_id={} with notification_data {}"
             .format(e, subscription_id, notification_data)
         )
