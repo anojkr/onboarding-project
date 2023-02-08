@@ -5,7 +5,15 @@ from ..models.subscriber import Subscriber
 class SubscriberSerializer(serializers.ModelSerializer):
     class Meta:
         model = Subscriber
-        fields = '__all__'
+        fields = [
+            "id",
+            "endpoint",
+            "public_key",
+            "auth_key",
+            "status",
+            "created_at",
+            "updated_at"
+        ]
         read_only_fields = [
             "id",
             "created_at",
