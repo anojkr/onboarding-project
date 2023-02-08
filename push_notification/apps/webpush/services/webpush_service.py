@@ -10,22 +10,14 @@ logger = logging.getLogger(__name__)
 class WebPushService(object):
 
     @classmethod
-    def get_notification_data(cls, notification):
-        return {
-            "title": notification.get('title', None),
-            "description": notification.get('description', None)
-        }
-
-    @classmethod
     def get_subscriber_ids(cls, subscribers):
         return [_.get('id') for _ in subscribers]
 
     @classmethod
     def send_notification_to_all_subscriber(cls, notification_id):
-        notification = NotificationAPIService().get_notification_by_id(notification_id)
-        if notification is None:
+        notification_data = NotificationAPIService().get_notification_data(notification_id)
+        if notification_data is None:
             raise NotificationNotFound(notification_id=notification_id)
-        notification_data = cls.get_notification_data(notification)
         subscribers = SubscriberAPIService().get_all_subscribers()
         subscriber_ids = cls.get_subscriber_ids(subscribers)
         logger.info("subscriber-ids: [{}]".format(subscriber_ids))

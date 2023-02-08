@@ -47,3 +47,13 @@ class NotificationAPIService(object):
             return None
         return notification
 
+    @classmethod
+    def get_notification_data(cls, notification_id):
+        notification = cls.get_notification_by_id(notification_id)
+        if notification is None:
+            return None
+        return {
+            "title": notification.get('title', None),
+            "description": notification.get('description', None)
+        }
+

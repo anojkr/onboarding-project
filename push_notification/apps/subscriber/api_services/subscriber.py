@@ -54,9 +54,3 @@ class SubscriberAPIService(object):
         except SubscriberNotFound as e:
             logger.error("SubscriberView.unsubscribe_subscriber: subscriber_id={}, exception={}".format(subscriber_id, e))
             return None
-
-
-
-
-
-

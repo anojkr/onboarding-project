@@ -12,4 +12,5 @@ class Subscriber(DateTimeEntity):
     class Meta:
         verbose_name = "subscriber"
         verbose_name_plural = "subscribers"
+        db_table = 'subscribers'
         ordering = ("-created_at",)
