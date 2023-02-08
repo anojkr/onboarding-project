@@ -52,9 +52,9 @@ class SubscriberService(object):
         """Return subscription-data for subscriber"""
         subscriber = cls.get_by_id(subscriber_id)
         return {
-            "endpoint": subscriber.get("endpoint"),
+            "endpoint": subscriber.endpoint,
             "keys": {
-                "auth": subscriber.get("auth_key"),
-                "p256dh": subscriber.get("public_key")
+                "auth": subscriber.auth_key,
+                "p256dh": subscriber.public_key
             }
         }

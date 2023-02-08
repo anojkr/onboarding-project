@@ -1,6 +1,7 @@
 from rest_framework.test import APITestCase
 from ....subscriber.services.subscriber_service import SubscriberService
 from ....subscriber.api_services.subscriber import SubscriberAPIService
+from django.urls import reverse
 
 
 class TestSubscriberApiService(APITestCase):
@@ -11,7 +12,7 @@ class TestSubscriberApiService(APITestCase):
             "public_key": "BBckLc4pAr2pEwjx6Ho3tigyayn2XpuRc9JFHkQ-CghTevxk8HYmZAALlmChkfuHq6og9JlfDBPUAHBQ0OGwBiA",
             "auth_key": "RbNu_79slmjxSMZOmyYzgQ"
         }
-        self.url = "/api/v1/subscriber/"
+        self.url = reverse("subscriber")
         self.subscriber_id = SubscriberService.create(self.payload).id
 
     def test_create_subscriber(self):

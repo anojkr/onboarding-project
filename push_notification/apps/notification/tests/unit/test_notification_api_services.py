@@ -1,6 +1,7 @@
 from rest_framework.test import APITestCase
 from ...services.notification_service import NotificationService
 from ...api_services.notification import NotificationAPIService
+from django.urls import reverse
 
 class TestNotificationAPIServices(APITestCase):
 
@@ -10,7 +11,7 @@ class TestNotificationAPIServices(APITestCase):
             "description": "Enter coupon-code to get flat 10% discount"
         }
         self.notification_id = NotificationService().create(self.payload).id
-        self.url = "/api/v1/notification/"
+        self.url = reverse("notification")
 
     def test_create_notification(self):
         data = {

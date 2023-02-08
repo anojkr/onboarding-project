@@ -13,7 +13,7 @@ class NotificationAPIService(object):
         logger.info("NotificationAPIService.create_notification: payload={}".format(data))
         serialized_data = NotificationSerializer(data=data)
         serialized_data.is_valid(raise_exception=True)
-        notification = NotificationService().create(data)
+        notification = NotificationService().create(serialized_data.validated_data)
         return NotificationSerializer(notification).data
 
     @classmethod
@@ -46,4 +46,14 @@ class NotificationAPIService(object):
             )
             return None
         return notification
+
+    @classmethod
+    def get_notification_data(cls, notification_id):
+        notification = cls.get_notification_by_id(notification_id)
+        if notification is None:
+            return None
+        return {
+            "title": notification.get('title', None),
+            "description": notification.get('description', None)
+        }
 

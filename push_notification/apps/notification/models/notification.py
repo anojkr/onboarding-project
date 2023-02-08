@@ -13,4 +13,5 @@ class Notification(DateTimeEntity):
         )
         verbose_name = "notification"
         verbose_name_plural = "notifications"
+        db_table = 'notifications'
         ordering = ("-created_at",)

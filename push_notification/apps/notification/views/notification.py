@@ -24,7 +24,7 @@ class NotificationView(APIView):
         return Response(NotificationSerializer(notification).data, status=status.HTTP_201_CREATED)
 
     def delete(self, request):
-        notification_id = request.data.get('notification_id', None)
+        notification_id = self.request.query_params.get('id')
         logger.info(msg="NotificationView:DELETE: notification_id={}".format(notification_id))
         try:
             NotificationService().delete_by_id(notification_id)
