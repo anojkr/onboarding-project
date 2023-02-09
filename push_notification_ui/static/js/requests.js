@@ -65,3 +65,19 @@ export function getAllNotifications() {
             return responseJson
         }).catch(error => console.error('Error: ', error))
 }
+
+export function sendNotification(notification_id) {
+    let url = getBaseUrl() + '/api/v1/notification/send/?id='+notification_id
+    let headers = {
+        'Content-type': 'application/json; charset=UTF-8',
+    }
+    return makeHttpRequest('POST', url, headers)
+        .then((responseJson) => {
+            if (responseJson['success']){
+                alert("Notification send successfully")
+            } else {
+                alert("Failed to send notification")
+            }
+            return responseJson
+        }).catch(error => console.error('Error: ', error))
+}
