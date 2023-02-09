@@ -1,12 +1,16 @@
-import {getServerPublicKey, getBaseUrl, logError} from "./utils.js"
-import {registerSubscriber} from "./requests.js"
 import {grantingNotificationPermission} from "./register-subscriber.js"
+import {createNotification} from "./requests.js"
 
-var subscribe_notification_btn = document.getElementById("subscriber_notification_btn")
+const subscribe_notification_btn = document.getElementById("subscriber_notification_btn")
+const notification_form = document.getElementById('notification-form')
 
 subscribe_notification_btn.addEventListener('click', function(event) {
     event.preventDefault()
-    var permission = grantingNotificationPermission()
-    console.log(permission)
+    grantingNotificationPermission()
+});
+
+notification_form.addEventListener('submit', function(event) {
+    event.preventDefault()
+    createNotification(notification_form)
 });
 

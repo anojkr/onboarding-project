@@ -24,12 +24,44 @@ export function registerSubscriber(subscriptionData){
     }
     return makeHttpRequest('POST', url, headers, body)
         .then((responseJson) => {
-            console.log("Response")
             if (responseJson){
                 alert("User subscribed successfully")
             } else {
                 alert("Failed to subscribe user")
             }
+            return responseJson
+        }).catch(error => console.error('Error: ', error))
+}
+
+export function createNotification(notificationData){
+    const formInputs = notificationData.elements
+    let url = getBaseUrl() + '/api/v1/notification/'
+    let body = JSON.stringify({
+        title: formInputs['title'].value,
+        description: formInputs['description'].value,
+    })
+    let headers = {
+        'Content-type': 'application/json; charset=UTF-8',
+    }
+    return makeHttpRequest('POST', url, headers, body)
+    .then((responseJson) => {
+            if (responseJson){
+                alert("Notification created successfully")
+            } else {
+                alert("Failed to create notification")
+            }
+        notificationData.reset()
+        return responseJson
+    }).catch(error => console.error('Error: ', error))
+}
+
+export function getAllNotifications() {
+    let url = getBaseUrl() + '/api/v1/notification/'
+    let headers = {
+        'Content-type': 'application/json; charset=UTF-8',
+    }
+    return makeHttpRequest('GET', url, headers)
+        .then((responseJson) => {
             return responseJson
         }).catch(error => console.error('Error: ', error))
 }
