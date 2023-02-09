@@ -1,2 +1,3 @@
 *.pyc
 .idea/*
+/push_notification_ui/.idea/*
