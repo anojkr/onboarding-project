@@ -74,7 +74,7 @@ export function sendNotification(notification_id) {
     return makeHttpRequest('POST', url, headers)
         .then((responseJson) => {
             if (responseJson['success']){
-                alert("Notification send successfully")
+                alert("Notification is scheduled to be sent successfully.")
             } else {
                 alert("Failed to send notification")
             }
