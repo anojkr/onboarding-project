@@ -18,7 +18,7 @@ class WebPushService(object):
         notification_data = NotificationAPIService().get_notification_data(notification_id)
         if notification_data is None:
             raise NotificationNotFound(notification_id=notification_id)
-        subscribers = SubscriberAPIService().get_all_subscribers()
+        subscribers = SubscriberAPIService().get_active_subscriber()
         subscriber_ids = cls.get_subscriber_ids(subscribers)
         logger.info("subscriber-ids: [{}]".format(subscriber_ids))
         for subscriber_id in subscriber_ids:
